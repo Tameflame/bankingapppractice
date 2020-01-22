@@ -1,0 +1,8 @@
+1. Need to finish refactoring the transactions into a bloc
+and have them working in homepage
+
+so far i've decided to take the original container with list and 
+extracted it into its own widget which has a bloc provider
+
+so far i've got icon implemented! this looks like the way woohoo
+i need to finish off having the list extract data from the transactions
