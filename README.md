@@ -5,10 +5,10 @@ Fictional banking app.
 Trying to implement a nice Monzo-like UI.
 
 (intended) Features: 
-    - See transactions
-    - Graph of account value
-    - Instant updates to transactions
-    - Push notifications
+- See transactions
+- Graph of account value
+- Instant updates to transactions
+- Push notifications
 
 ## Getting Started
 
