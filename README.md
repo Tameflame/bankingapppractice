@@ -1,6 +1,14 @@
 # banking_app
 
-A new Flutter project.
+Fictional banking app.
+
+Trying to implement a nice Monzo-like UI.
+
+(intended) Features: 
+    - See transactions
+    - Graph of account value
+    - Instant updates to transactions
+    - Push notifications
 
 ## Getting Started
 
