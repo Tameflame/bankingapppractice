@@ -20,6 +20,8 @@ IconData getIcon(String iconString) {
       return Icons.movie;
     case "Icons.card_giftcard":
       return Icons.card_giftcard;
+    case "Icons.cake":
+      return Icons.cake;
     default:
       return Icons.error;
   }

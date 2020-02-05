@@ -199,11 +199,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   // note 2020-01-21: I refactored this, better check if it works
+  // It works!
+  // I still wonder if a draggablescrollablesheet is the right thing here
   Widget cardAndTransactionsSheetBuilder() {
     return DraggableScrollableSheet(
       minChildSize: 0.39,
       initialChildSize: 0.39,
-      // maxChildSize: 0.82,
       maxChildSize: 0.95,
       builder: (context, controller) => Container(
         decoration: BoxDecoration(
@@ -260,87 +261,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // ok this is working! woohoo
-  Widget buildTransactionsContainer() {
-    return BlocBuilder<TransactionBloc, TransactionState>(
-        bloc: BlocProvider.of<TransactionBloc>(context),
-        builder: (context, state) {
-          List<BankTransaction> myList2;
-
-          if (state is TransactionsLoaded) {
-            myList2 = state.transactionList;
-          }
-
-          return Container(
-            height: 400,
-            child: ListView.builder(
-              physics: ClampingScrollPhysics(),
-              itemCount: (myList2 == null) ? 1 : myList2.length,
-              itemBuilder: (context, value) {
-                return Container(
-                  height: 100,
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Card(
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Icon(
-                            // ok so it's giving me an error
-                            // because i am calling [0] while mylist has nothing
-                            // looks like ill need to do some if statement
-                            // something like if (mylist .rage = blah blah blah)
-                            // or maybe it hsould be higher, at the itemcount thing
-                            // and asserting that itemcount can't be 0
-                            // myList2[0].icon ?? Icons.error,
-                            //  UPDATE: ok i fixed it with the following:
-                            (myList2 == null)
-                                ? Icons.error
-                                : myList2[value].icon,
-                            size: 36,
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                (myList2 == null)
-                                    ? "Loading"
-                                    : myList2[value].name,
-                                textAlign: TextAlign.center,
-                                style: AppTextStyle.paragraph_bold,
-                              ),
-                              Text(
-                                (myList2 == null)
-                                    ? "Loading"
-                                    : myList2[value]
-                                        .date
-                                        .toString()
-                                        .substring(0, 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            (myList2 == null)
-                                ? "Loading"
-                                : ("\$" + myList2[value].price),
-                            textAlign: TextAlign.center,
-                            style: AppTextStyle.paragraph_bold,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        });
-  }
 
   Widget buildTransactionsContainerWithFirebaseStream() {
     return StreamBuilder<QuerySnapshot>(
@@ -351,10 +271,11 @@ class _HomePageState extends State<HomePage> {
           List<BankTransaction> myList2 = [];
 
           if (snapshot.data != null) {
+            // I wonder if its necessary to have a templist here
             List<BankTransaction> _tempList = [];
             // TODO: Try to change this to snapshot.data.documentchanges
             // the current issue is if i do, for somereason when it
-            // rebuilds, it rebuilds with just the new doc, and THEN
+            // rebuilds, it rebuilds with JUST the new doc, and THEN
             // when i scroll, it updates to the new list
             // im sure there's a way to make it work. try!
             
@@ -363,6 +284,7 @@ class _HomePageState extends State<HomePage> {
                   BankTransaction.fromMap(doc.data);
                   _tempList.add(_transaction);
             });
+            // Note that this returns a reversed list
             _tempList.sort((a,b) {return b.date.compareTo(a.date);});
             if (myList2 != _tempList) {
               myList2 = _tempList;
