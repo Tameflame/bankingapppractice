@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:banking_app/style.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,45 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // This is obviously hardcoded, will  need a  bloc
-  // The bloc would probably fetch a json from a firebase,
-  // and parse it, then yielding it here.
-  // bloc name like TransactionsBloc would made sense
-  // events would be e.g:  GetTransactions(start period, end period)
-  // states would be e.g: TransactionsLoaded, TransactionsNotLoaded etc.
-
-  // final List<Map<String, dynamic>> _transactionsContent = [
-  //   {
-  //     "Name": "Pastation",
-  //     "Price": "\$25.50",
-  //     "Date": "15/12/2019",
-  //     "Icon": Icons.local_dining
-  //   },
-  //   {
-  //     "Name": "Starbucks",
-  //     "Price": "\$12.50",
-  //     "Date": "13/12/2019",
-  //     "Icon": Icons.local_cafe
-  //   },
-  //   {
-  //     "Name": "Dior",
-  //     "Price": "\$2,999.99",
-  //     "Date": "14/12/2019",
-  //     "Icon": Icons.local_mall
-  //   },
-  //   {
-  //     "Name": "Rome Holiday",
-  //     "Price": "\$1200.00",
-  //     "Date": "10/05/2019",
-  //     "Icon": Icons.local_airport
-  //   },
-  // ];
-
-  // Why the fuck do i need to declare them here?
-  // all the more reason to actually use a bloc
-  // Map myDoc = {};
   Map myDoc2 = {};
-  // List<BankTransaction> myList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +43,6 @@ class _HomePageState extends State<HomePage> {
             FirebaseUser _user;
             if (state is Authenticated) {
               _user = state.user;
-              // String _userID = _user.uid;
             }
             return Stack(
               children: <Widget>[
