@@ -1,10 +1,13 @@
 # banking_app
 
-Fictional banking app.
+Developing a fictional banking app.
 
-Trying to implement a nice Monzo-like UI.
+Trying to implement a nice Monzo-like UI, with Google Firebase backend.
 
-(intended) Features: 
+Features: 
+- Authentication Flow
+    - Fully implemented username+password using firebaseAuth
+    - Need to add: Apple Sign in Google Sign in
 - See transactions 
     - Got it linked to a firebase database (cloud firestore) with streamed real time updates
 - Graph of account value 
