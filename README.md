@@ -4,6 +4,8 @@ Developing a fictional banking app.
 
 Trying to implement a nice Monzo-like UI, with Google Firebase backend.
 
+![The app so far (Feb 2020)](https://i.imgur.com/PrWPfK7.gif)
+
 Features: 
 - Authentication Flow
     - Fully implemented username+password using firebaseAuth
