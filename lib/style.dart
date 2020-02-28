@@ -21,11 +21,12 @@ class AppTextStyle {
   );
 }
 
-final ThemeData myTheme = ThemeData(
+
+ThemeData myTheme = ThemeData(
     fontFamily: 'Inter',
     // tabBarTheme: TabBarTheme(
     //   indicator: UnderlineTabIndicator(
     //       borderSide: BorderSide(color: AppSwatch.foregroundGreen)),
-    // )
-    dividerColor: Colors.transparent
+    // ),
+    dividerColor: Colors.transparent,
     );

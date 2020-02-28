@@ -21,6 +21,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
           listener: (context, state) {
             if (state is SuccessfullyLoggedIn) {
               BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+
               /// Decide to whether to pass user as an argument
               /// or to instantiate it with bloclistener.
               /// probably less boilerplate the argument way
@@ -66,12 +67,14 @@ class _LoginFormPageState extends State<LoginFormPage> {
                             TextSpan(
                                 text: "A",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 80,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
                             TextSpan(
                                 text: ".",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 100,
                                     fontWeight: FontWeight.bold,
                                     color: AppSwatch.foregroundGreen)),

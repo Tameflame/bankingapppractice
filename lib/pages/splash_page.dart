@@ -7,9 +7,7 @@ class SplashPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
-              color: Color(0xFFE3EBEE)
-                ),
+            decoration: BoxDecoration(color: Color(0xFFE3EBEE)),
           ),
           Center(
             child: RichText(
@@ -17,12 +15,14 @@ class SplashPage extends StatelessWidget {
                 TextSpan(
                     text: "A",
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         fontSize: 80,
                         fontWeight: FontWeight.bold,
                         color: Colors.black)),
                 TextSpan(
                     text: ".",
                     style: TextStyle(
+                        fontFamily: 'Inter',
                         fontSize: 100,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF07877D))),

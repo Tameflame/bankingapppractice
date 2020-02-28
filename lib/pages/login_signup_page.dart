@@ -15,8 +15,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       body: Stack(children: <Widget>[
         Container(
           height: double.infinity,
-          decoration: BoxDecoration(color: 
-          Color(0xFFE3EBEE)),
+          decoration: BoxDecoration(color: Color(0xFFE3EBEE)),
         ),
         Column(
           children: <Widget>[
@@ -30,11 +29,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                           style: TextStyle(
                               fontSize: 80,
                               fontWeight: FontWeight.bold,
+                              // For some reason the theme isn't passed to a richtext
+                              // So i have to pass it manually here
+                              fontFamily: 'Inter',
                               color: Colors.black)),
                       TextSpan(
                           text: ".",
                           style: TextStyle(
                               fontSize: 100,
+                              fontFamily: 'Inter',
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF07877D))),
                     ]),
@@ -91,6 +94,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             // Chose 18 instead of 16 (the default on my style.dart)
             // because it just looks better
             fontSize: 18,
+            // fontFamily: 'Inter'
           ),
         ),
         shape: RoundedRectangleBorder(
@@ -113,8 +117,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         },
         child: Text(
           "Create Account",
-          style: TextStyle(
-              color: Color(0xFF07877D), fontSize: 18),
+          style: TextStyle(color: Color(0xFF07877D), fontSize: 18),
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),

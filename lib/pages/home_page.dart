@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:banking_app/style.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:banking_app/api/accountChart/accountChart.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: BlocBuilder(
           bloc: BlocProvider.of<AuthenticationBloc>(context),
           builder: (context, state) {
@@ -40,10 +41,12 @@ class _HomePageState extends State<HomePage> {
             //
             // Option 3: Bloc Listener
             // Not sure how to implement this...
-            FirebaseUser _user;
-            if (state is Authenticated) {
-              _user = state.user;
-            }
+
+            // TODO: !!! HOLY SHIT THIS WORKS INTEAD OF THE IF (STATE IS AUTHENTICATED) THING!
+            FirebaseUser _user = (state as Authenticated).user;
+            // if (state is Authenticated) {
+            //   _user = state.user;
+            // }
             return Stack(
               children: <Widget>[
                 Container(
@@ -127,14 +130,30 @@ class _HomePageState extends State<HomePage> {
                                 // height: 250,
                                 height:
                                     MediaQuery.of(context).size.height * 0.35,
-                                decoration: BoxDecoration(
-                                    color: AppSwatch.backgroundGreen,
-                                    borderRadius: BorderRadius.circular(40)),
+                                // decoration: BoxDecoration(
+                                //     color: AppSwatch.backgroundGreen,
+                                //     borderRadius: BorderRadius.circular(40)),
                                 child: TabBarView(
                                   //  These children should be different graphs?
                                   // I'm thinking maybe use a bloc for this...
                                   children: <Widget>[
-                                    Center(child: Text("Last Week Chart Here")),
+                                    Center(
+                                      // child: Text("Last Week Chart Here"),
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.35,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child:
+                                              SevenDaysChart.withSampleData(),
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: AppSwatch.backgroundGreen,
+                                            borderRadius:
+                                                BorderRadius.circular(40)),
+                                      ),
+                                    ),
                                     Center(
                                         child: Text("Last Month Chart Here")),
                                     Center(child: Text("All Time Chart Here")),
@@ -207,7 +226,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 buildTransactionsContainerWithFirebaseStream(),
-                // buildTransactionsContainer(),
               ],
             ),
             Container(
@@ -222,7 +240,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 
   Widget buildTransactionsContainerWithFirebaseStream() {
     return StreamBuilder<QuerySnapshot>(
@@ -240,14 +257,15 @@ class _HomePageState extends State<HomePage> {
             // rebuilds, it rebuilds with JUST the new doc, and THEN
             // when i scroll, it updates to the new list
             // im sure there's a way to make it work. try!
-            
+
             snapshot.data.documents.forEach((doc) {
-              BankTransaction _transaction =
-                  BankTransaction.fromMap(doc.data);
-                  _tempList.add(_transaction);
+              BankTransaction _transaction = BankTransaction.fromMap(doc.data);
+              _tempList.add(_transaction);
             });
             // Note that this returns a reversed list
-            _tempList.sort((a,b) {return b.date.compareTo(a.date);});
+            _tempList.sort((a, b) {
+              return b.date.compareTo(a.date);
+            });
             if (myList2 != _tempList) {
               myList2 = _tempList;
             }
@@ -313,7 +331,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           );
-
         });
   }
 }

@@ -31,12 +31,14 @@ class SignupPage1 extends StatelessWidget {
                           TextSpan(
                               text: "A",
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   fontSize: 40,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                           TextSpan(
                               text: ".",
                               style: TextStyle(
+                                  fontFamily: 'Inter',
                                   fontSize: 50,
                                   fontWeight: FontWeight.bold,
                                   color: AppSwatch.foregroundGreen)),
@@ -121,8 +123,8 @@ class _SignupFormContainerState extends State<SignupFormContainer> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height*0.54,
-                child: _signupPage1Form()),
+                  height: MediaQuery.of(context).size.height * 0.54,
+                  child: _signupPage1Form()),
               _nextAndSupportButtons()
             ],
           )
@@ -132,8 +134,7 @@ class _SignupFormContainerState extends State<SignupFormContainer> {
   }
 
   Widget _signupPage1Form() {
-    return Column(
-      children: [
+    return Column(children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
         child: TextFormField(
@@ -215,7 +216,7 @@ class _SignupFormContainerState extends State<SignupFormContainer> {
 
   Widget _nextAndSupportButtons() {
     return Column(children: <Widget>[
-        // Divider(height: MediaQuery.of(context).size.height*0.1,),
+      // Divider(height: MediaQuery.of(context).size.height*0.1,),
       Container(
         width: double.infinity,
         height: 55,
@@ -225,14 +226,13 @@ class _SignupFormContainerState extends State<SignupFormContainer> {
             // Let's push this shit to the login bloc
             // print("Details are: $_firstName, $_lastName, \n $_addressLine1, $_postCode");
             // Navigator.of(context).pushNamed("/SignupPage2");
-            BlocProvider.of<LoginFlowBloc>(context).add(UpdateDetails(
-              <String, String>{
-                "firstName" : _firstName,
-                "lastName" : _lastName,
-                "addressLine1" : _addressLine1,
-                "postCode" : _postCode
-              }
-            ));
+            BlocProvider.of<LoginFlowBloc>(context)
+                .add(UpdateDetails(<String, String>{
+              "firstName": _firstName,
+              "lastName": _lastName,
+              "addressLine1": _addressLine1,
+              "postCode": _postCode
+            }));
             Navigator.of(context).pushNamed("/SignupPage2");
           },
           child: Text(

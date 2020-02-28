@@ -49,12 +49,14 @@ class SignupPage2 extends StatelessWidget {
                             TextSpan(
                                 text: "A",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 40,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
                             TextSpan(
                                 text: ".",
                                 style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 50,
                                     fontWeight: FontWeight.bold,
                                     color: AppSwatch.foregroundGreen)),
